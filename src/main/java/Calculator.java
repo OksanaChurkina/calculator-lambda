@@ -1,0 +1,32 @@
+package src.main.java;
+
+import java.io.Console;
+import java.util.function.*;
+
+public class Calculator {
+
+    static Supplier<Calculator> instance = Calculator::new;
+
+    BinaryOperator<Integer> plus = (x, y) -> x + y;
+    BinaryOperator<Integer> minus = (x, y) -> x - y;
+    BinaryOperator<Integer> multiply = (x, y) -> x * y;
+    BinaryOperator<Integer> devide = (x, y) -> {
+        if(y.equals(0)){
+            System.out.println("Деление на 0 запрещено");
+            throw new ArithmeticException();
+        }
+        return x/y;
+    };
+
+    UnaryOperator<Integer> pow = x -> x * x;
+    UnaryOperator<Integer> abs = x -> {
+        if(x >0){
+            return x;
+        }
+        return -x;
+    };
+
+    Predicate<Integer> isPositive = x -> x > 0;
+
+    Consumer<Integer> println = System.out::println;
+}
